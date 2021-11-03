@@ -1,23 +1,64 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useState } from "react";
+import "./App.css";
+import MovieCard from "./component/movieCard";
+import NavbarComponent from "./component/navbar";
+import { data } from "./data";
 function App() {
+  const [movieList, setMovieList] = useState(data);
+  const [favoriteList, setFavoriteList] = useState([]);
+  const [isFavTab, setFavTab] = useState(false);
+  // console.log(movieList);
+  function handelFavOnClick(movie) {
+    setFavoriteList((prevState) => [...prevState, movie]);
+  }
+  function handelRemoveFavOnClick(movie) {
+    let ref = favoriteList.filter((element) => element !== movie);
+    setFavoriteList(ref);
+  }
+
+  // console.log(favoriteList);
+
+  const listOfMovies = isFavTab ? favoriteList : movieList;
+
+  function favorite(movie) {
+    let index = favoriteList.findIndex((element) => element == movie);
+    if (index != -1) {
+      return true;
+    }
+    return false;
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavbarComponent />
+
+      <div className="main">
+        <div className="tabs">
+          <div
+            className={`tab ${isFavTab ? "" : "active-tabs"}`}
+            onClick={() => setFavTab(false)}
+          >
+            Movie
+          </div>
+          <div
+            className={`tab ${isFavTab ? "active-tabs" : ""}`}
+            onClick={() => setFavTab(true)}
+          >
+            Favorite
+          </div>
+        </div>
+
+        <div className="list">
+          {listOfMovies.map((movie, index) => (
+            <MovieCard
+              key={index}
+              movie={movie}
+              handelFavOnClick={handelFavOnClick}
+              handelRemoveFavOnClick={handelRemoveFavOnClick}
+              favorite={favorite(movie)}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
