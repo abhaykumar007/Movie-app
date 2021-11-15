@@ -3,7 +3,7 @@ import React, { useState } from "react";
 export default function MovieCard(props) {
   const { movie, handelFavOnClick, handelRemoveFavOnClick, favorite } = props;
   //   console.log("Movie", movie);
-  console.log(favorite);
+  // console.log(favorite);
   return (
     <div className="movie-card">
       <div className="left">
@@ -18,14 +18,14 @@ export default function MovieCard(props) {
             {favorite ? (
               <button
                 onClick={() => handelRemoveFavOnClick(movie)}
-                className="favorite"
+                className="unfavourite-btn"
               >
                 unfavorite
               </button>
             ) : (
               <button
                 onClick={() => handelFavOnClick(movie)}
-                className="unfavorite"
+                className="favourite-btn "
               >
                 favorite
               </button>

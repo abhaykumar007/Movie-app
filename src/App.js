@@ -16,20 +16,22 @@ function App() {
     setFavoriteList(ref);
   }
 
-  // console.log(favoriteList);
-
   const listOfMovies = isFavTab ? favoriteList : movieList;
 
   function favorite(movie) {
-    let index = favoriteList.findIndex((element) => element == movie);
-    if (index != -1) {
+    let index = favoriteList.findIndex((element) => element === movie);
+    if (index !== -1) {
       return true;
     }
     return false;
   }
+
+  function addMovie(movie) {
+    setMovieList((prevState) => [movie, ...prevState]);
+  }
   return (
     <div className="App">
-      <NavbarComponent />
+      <NavbarComponent addMovie={addMovie} />
 
       <div className="main">
         <div className="tabs">

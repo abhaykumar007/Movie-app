@@ -29,16 +29,17 @@ body {
 .search-container {
   position: relative;
 }
-.search-results {
+.search-result {
   position: absolute;
   background: #fff;
-  width: 100%;
+  width: 60vw;
   box-sizing: border-box;
   border: 1px solid #e1e1e1;
-  top: 42px;
+  top: 50px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   z-index: 100;
+  margin-top: 10px;
 }
 .search-result .movie-info {
   display: flex;
@@ -46,7 +47,11 @@ body {
   justify-content: space-between;
 }
 .search-result .movie-info button {
-  margin: 20px 10px;
+  width: 30vw;
+  margin-left: auto;
+  margin-top: 20px;
+  margin-right: 13vw;
+  margin-bottom: 20px;
   background: #21ba45;
   color: #fff;
   font-weight: 600;
@@ -60,6 +65,9 @@ body {
 }
 .search-result img {
   height: 150px;
+  margin-top: 22px;
+  margin-left: 10px;
+  /* align-items: baseline; */
 }
 .search-result > div span {
   font-size: 20px;
@@ -78,7 +86,7 @@ body {
 .search-result .movie-info button:hover {
   cursor: pointer;
 }
-#search-btn {
+.search-btn {
   background: #f2711c;
   height: 43px;
   color: #fff;
@@ -123,6 +131,10 @@ body {
   box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #f1f1f1;
   display: flex;
   margin: 0 1%;
+  transition: all 0.2s ease-in-out;
+}
+.movie-card:hover {
+  transform: scale(1.05);
 }
 .movie-card:not(:first-child) {
   margin-top: 20px;
